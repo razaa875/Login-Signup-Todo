@@ -16,16 +16,6 @@ function displayUsername(username) {
         dashboardUsername.textContent = username;
     }
 }
-function loadAuthScreen() {
-    var getUsers = JSON.parse(localStorage.getItem("userLogin"))
-    console.log("getUsers", getUsers)
-
-    if (getUsers !== null) {
-        window.location.replace("./dashboard.html")
-
-       
-    }
-}
 function logout() {
     localStorage.removeItem("userLogin");
     window.location.replace("./index.html");

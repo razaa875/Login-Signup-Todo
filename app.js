@@ -1,4 +1,5 @@
-function signup() {
+function signup(event) {
+    event.preventDefault();
     var username = document.getElementById("username")
     var email = document.getElementById("email")
     var password = document.getElementById("password")
@@ -11,12 +12,10 @@ function signup() {
     if (getUsers === null) {
         localStorage.setItem("users", JSON.stringify([userObj]))
         alert("User successfully signup")
-        window.location.assign("./index.html")
-
+        window.location.href = "./index.html";
     }
     else {
         var userParse = JSON.parse(getUsers)
-        console.log(userParse, "userParse")
         var emailCheck = userParse.find(function (value, index) {
             if (value.email === userObj.email && value.password === userObj.password) {
                 return value
@@ -26,7 +25,7 @@ function signup() {
             userParse.push(userObj)
             localStorage.setItem("users", JSON.stringify(userParse))
             alert("User successfully signup")
-            window.location.assign("./index.html")
+             window.location.href = "./index.html";
         } else {
             alert("email address already exists!")
         }
@@ -53,22 +52,8 @@ function login() {
     }
     console.log("emailExist", userExist)
 }
-var userDetails = null
-function isUserLogin() {
-    console.log("isUserLogin")
-    var getUsers = JSON.parse(localStorage.getItem("userLogin"))
-    console.log("getUsers", getUsers)
-    if (getUsers === null) {
-        userDetails = getUsers
-
-        window.location.replace("./index.html")
-    }
-}
-
 function loadAuthScreen() {
     var getUsers = JSON.parse(localStorage.getItem("userLogin"))
-    console.log("getUsers", getUsers)
-
     if (getUsers !== null) {
         window.location.replace("./dashboard.html")
     }
